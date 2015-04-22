@@ -7,6 +7,9 @@ $(document).ready(function (){
 				Market[fruit]);
 		}
 	}, 5000);
+	$("#apple").on("click", function(){
+		
+	})
 });
 
 var Market = {
