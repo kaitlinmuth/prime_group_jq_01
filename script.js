@@ -13,12 +13,10 @@ $(document).ready(function (){
 });
 
 var Market = {
-	//Random number will always yield an integer, 
-	//but we don't care, we do what we want when setting initial apple prices. 
-	apples: randomNumber(0.50, 9.99),
-	oranges: randomNumber(0.50, 9.99),
-	bananas: randomNumber(0.50, 9.99),
-	pears: randomNumber(0.50, 9.99),
+	apples: (randomNumber(50, 999))/100,
+	oranges: (randomNumber(50, 999))/100,
+	bananas: (randomNumber(50, 999))/100,
+	pears: (randomNumber(50, 999))/100
 };
 
 function randomChange(price) {
@@ -28,6 +26,7 @@ function randomChange(price) {
 	num /= 100;
 	console.log("num is " + num);
 	price += num;
+    price = precise_round(price, 2);
 	console.log("price is " + price);
 	if (price < 0.50) {
 		price = 0.50;
@@ -74,3 +73,7 @@ function randomNumber(min, max) {
 	return Math.floor(Math.random() * (1 + max - min) + min);
 }
 
+//from: http://stackoverflow.com/questions/1726630/javascript-formatting-number-with-exactly-two-decimals
+function precise_round(num,decimals){
+    return Math.round(num*Math.pow(10,decimals))/Math.pow(10,decimals);
+}

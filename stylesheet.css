@@ -1,8 +1,24 @@
 .fruit{
 	display: table-cell;
-	padding-left: 150px;
+	color: black;
+	font-size: 20px;
+	font-family: "Chochin";
+
 }
 
 h1{
 	text-align: center;
+	color: dark gray;
+	font-family: "Linowrite", sans-serif;
+	font-size: 60px;
+}
+body{
+	background: "bag.gif";
+	margin: 0px auto 0px auto;
+}
+h2{
+	text-align: center;
+	color: black;
+	font-family: "Linowrite", sans-serif;
+	font-size: 40px;
 }
