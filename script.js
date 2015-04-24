@@ -62,7 +62,7 @@ var Market = {
 function randomChange(price) {
 	console.log("First Price ",price);
 	//Generate a random number between -50 and 50
-    var num = randomNumber (-50, 50);
+    var num = randomNumber (-25, 25);
 	console.log("num is ", num);
 	num /= 100;
 	//Divide random number by 100 to get $ value
@@ -86,7 +86,7 @@ function randomChange(price) {
 //Create Person object for "current user"
 var Person = {
     //Keep track of user's total cash
-	totalCash: 100,
+	totalCash: 50,
 	//Create property for the number of fruits the user has purchased
     //Set initial value to 0
     apple: 0,
