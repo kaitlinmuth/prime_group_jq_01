@@ -1,5 +1,4 @@
-$(document).ready(function (){ 
-	console.log("The original price of apple is " + Market.apple);
+$(document).ready(function (){
     //set initial price in DOM
     for (var fruit in Market) {
         $("#"+fruit).children("#price").text(Market[fruit]);
@@ -18,44 +17,74 @@ $(document).ready(function (){
 	}, 15000);
 
     //Set click functionality of #apple div to purchase 1 apple at the current price.
-	$("#appleDiv").on("click", function(){
-	    thingToDo("apple");
-	})
+	$("#pikachuDiv").on("click", ".btn-success", function(){
+	    buyCalcs("pikachu");
+	});
+
+	//set click functionality of #pikachu div to sell 1 pikachu at the current price.
+	$("#pikachuDiv").on("click", ".btn-danger", function(){
+		sellCalcs("pikachu");
+	});
 
     //Set click functionality of #banana div to purchase 1 apple at the current price.
-    $("#bananaDiv").on("click", function(){
-        thingToDo("banana");
-    })
+    $("#charmanderDiv").on("click", ".btn-success", function(){
+        buyCalcs("charmander");
+    });
+
+	//set click functionality of #pikachu div to sell 1 pikachu at the current price.
+	$("#charmanderDiv").on("click", ".btn-danger", function(){
+		sellCalcs("charmander");
+	});
 
     //Set click functionality of #orange div to purchase 1 apple at the current price.
-    $("#orangeDiv").on("click", function(){
-        thingToDo("orange");
-    })
+    $("#bulbasaurDiv").on("click", ".btn-success", function(){
+        buyCalcs("bulbasaur");
+    });
+	//set click functionality of #pikachu div to sell 1 pikachu at the current price.
+	$("#bulbasaurDiv").on("click", ".btn-danger", function(){
+		sellCalcs("bulbasaur");
+	});
 
     //Set click functionality of #pear div to purchase 1 apple at the current price.
-    $("#pearDiv").on("click", function(){
-        thingToDo("pear");
-    })
+    $("#squirtleDiv").on("click", ".btn-success", function(){
+        buyCalcs("squirtle");
+    });
+
+	//set click functionality of #pikachu div to sell 1 pikachu at the current price.
+	$("#squirtleDiv").on("click", ".btn-danger", function(){
+		sellCalcs("squirtle");
+	});
+
+
 });
 
-function thingToDo(fruit) {
-    console.log("The market price of " + fruit + " is " + Market[fruit]);
+function buyCalcs(fruit) {
     var thisPrice = Market[fruit];
     buyFruit(fruit, thisPrice);
     //Search in #[fruit] for each child corresponding to display bullets
-    $("#" + fruit).children("#totalInv").text(Person[fruit]);
+    $("#" + fruit).children("#totalInv").text("Inventory: "+Person[fruit]);
     $("#" + fruit).children("#avPrice").text(Person[fruit + "sAverage"]);
     $("#cash").text("Your available cash: $" + Person.totalCash);
 }
+
+function sellCalcs(pokemon){
+	var thisPrice = Market[pokemon];
+	sellPokemon(pokemon, thisPrice);
+	$("#"+pokemon).children("#totalInv").text("Inventory: "+Person[pokemon]);
+	$("#" + pokemon).children("#avPrice").text(Person[pokemon + "sAverage"]);
+	$("#cash").text("Your available cash: $" + Person.totalCash);
+
+}
+
 
 //Create Market container (object) that holds each fruit as a property
 var Market = {
     //Assign each new property (fruit) to the initial price
     //Initial price: find random integer between 50 and 999 using randomNumber(), divide by 100 to get $ value
-	apple: (randomNumber(50, 999))/100,
-	orange: (randomNumber(50, 999))/100,
-	banana: (randomNumber(50, 999))/100,
-	pear: (randomNumber(50, 999))/100
+	pikachu: (randomNumber(50, 999))/100,
+	charmander: (randomNumber(50, 999))/100,
+	bulbasaur: (randomNumber(50, 999))/100,
+	squirtle: (randomNumber(50, 999))/100
 };
 
 //Find new price based on randomly generated change in price
@@ -87,24 +116,31 @@ function randomChange(price) {
 var Person = {
     //Keep track of user's total cash
 	totalCash: 50,
-	//Create property for the number of fruits the user has purchased
+	//Create property for the number of fruits the user has in inventory
     //Set initial value to 0
-    apple: 0,
-	orange: 0, 
-	banana: 0, 
-	pear: 0,
+    pikachu: 0,
+	charmander: 0,
+	bulbasaur: 0,
+	squirtle: 0,
+
+	//track the total number of each pokemon sold
+	pikachuSold: 0,
+	charmanderSold: 0,
+	bulbasaurSold: 0,
+	squirtleSold:0,
+
     //Create property for the total amount spent per each type of fruit
     //Set initial value to 0
-	applesCost: 0,
-	orangesCost: 0,
-	bananasCost: 0, 
-	pearsCost: 0,
+	pikachusCost: 0,
+	charmandersCost: 0,
+	bulbasaursCost: 0,
+	squirtlesCost: 0,
     //Create property for the average amount spent per each type of fruit
     //Set initial value to 0
-	applesAverage: 0,
-	orangesAverage: 0,
-	bananasAverage: 0,
-	pearsAverage: 0 
+	pikachusAverage: 0,
+	charmandersAverage: 0,
+	bulbasaursAverage: 0,
+	squirtlesAverage: 0
 };
 
 //Function for user action of purchasing a piece of fruit
@@ -120,11 +156,27 @@ function buyFruit(fruit, price) {
         Person[fruit + "sCost"] += price;
 		console.log("Total cost of " + fruit + ": " + Person[fruit + "sCost"]);
 		//Recalculate average price per fruit based on updated quantity and total cost per fruit type
-        Person[fruit + "sAverage"] = precise_round((Person[fruit + "sCost"])/(Person[fruit]),2);
+        Person[fruit + "sAverage"] = precise_round((Person[fruit + "sCost"])/(Person[fruit]+Person[fruit+"Sold"]),2);
 		console.log("Average cost of " + fruit + ": " + Person[fruit + "sAverage"]);
     } else {
-		alert("You don't have enough money for that fruit!")
+		alert("You don't have enough money for that pokemon!")
 	}
+}
+
+//Function for user action of selling a pokemon
+function sellPokemon(pokemon, price) {
+	console.log("The user's total cash is " + Person.totalCash + ", and the current price is " + price);
+	if (Person[pokemon] > 0) {
+		//Add cost of pokemon sold from current total cash
+		Person.totalCash = precise_round(Person.totalCash + price, 2);
+		//Decrease pokemon quantity in user basket by 1
+		Person[pokemon]--;
+		//Increment cost of Pokemon sold
+		Person[pokemon + "Sold"]++;
+		//Recalculate average price per fruit based on updated quantity and total cost per fruit type
+		Person[pokemon + "sAverage"] = precise_round((Person[pokemon + "sCost"]) / (Person[pokemon] + Person[pokemon + "Sold"]), 2);
+		console.log("Average cost of " + pokemon + ": " + Person[pokemon + "sAverage"]);
+	} else {alert("You don't have any of that Pokemon to sell!");}
 }
 
 //Generate a random integer given a minimum and maximum range value

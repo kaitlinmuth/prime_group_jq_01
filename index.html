@@ -2,60 +2,59 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>The Fruit Market</title>
+		<title>The Pokekitty Market</title>
 
 		<meta name="description" content="Webpage">
+		<link href="https://bootswatch.com/paper/bootstrap.min.css" rel="stylesheet">
 		<link href="stylesheet.css" rel="stylesheet">
 
 		<script src="jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 		<script src="script.js"></script>
 	</head>
 	
 	<body>
-		<!--<body background="http://yevma.com/wp-content/uploads/2015/02/white-wood.jpg">-->
-	<h1>The Fruit Market</h1>
-	<div class = "fruit" id="appleDiv"><img src = "images/apple.png">
-			<ul id = "apple">
-				<li>Price:</li>
-				<li id = "price">$0.00</li>
-				<li>Total in inventory:</li>
-				<li id = "totalInv">0</li>
+	<div class="container">
+		<div class="row"><h1>The Pokekitten Market</h1></div>
+		<div class= "col-xs-12 col-sm-3 col-md-3 col-lg-3 fruit" id="pikachuDiv"><img src = "images/pikachu.gif">
+			<div class="btn btn-lg btn-success pikachu">Buy</div><div class="btn btn-lg btn-danger pikachu">Sell</div>
+			<ul id = "pikachu">
+					<li id = "price">Price: $0.00</li>
+					<li id = "totalInv">Inventory: 0</li>
+					<li>Average price paid:</li>
+					<li id="avPrice">$0.00</li>
+				</ul>
+		</div>
+		<div class = "col-xs-12 col-sm-3 col-md-3 col-lg-3 fruit" id = "charmanderDiv"><img src = "images/charmander.gif">
+			<div class="btn btn-lg btn-success charmander">Buy</div><div class="btn btn-lg btn-danger charmander">Sell</div>
+			<ul id = "charmander">
+				<li id = "price">Price: $0.00</li>
+				<li id = "totalInv">Inventory: 0</li>
 				<li>Average price paid:</li>
 				<li id="avPrice">$0.00</li>
 			</ul>
+		</div>
+		<div class = "col-xs-12 col-sm-3 col-md-3 col-lg-3 fruit" id = "bulbasaurDiv"><img src = "images/bulbasaur.gif">
+			<div class="btn btn-lg btn-success bulbasaur">Buy</div><div class="btn btn-lg btn-danger bulbasaur">Sell</div>
+			<ul id = "bulbasaur">
+				<li id = "price">Price: $0.00</li>
+				<li id = "totalInv">Inventory: 0</li>
+				<li>Average price paid:</li>
+				<li id="avPrice">$0.00</li>
+			</ul>
+		</div>
+		<div class = "col-xs-12 col-sm-3 col-md-3 col-lg-3 fruit" id = "squirtleDiv"><img src = "images/squirtle.gif">
+			<div class="btn btn-lg btn-success squirtle">Buy</div><div class="btn btn-lg btn-danger squirtle">Sell</div>
+			<ul id = "squirtle">
+				<li id = "price">Price: $0.00</li>
+				<li id = "totalInv">Inventory: 0</li>
+				<li>Average price paid:</li>
+				<li id="avPrice">$0.00</li>
+			</ul>
+		</div>
+	<br/>
+		<div class="row"><h2 id = "cash">Your available cash: $50.00</h2></div>
 	</div>
-	<div class = "fruit" id = "bananaDiv"><img src = "images/bananas.png">
-		<ul id = "banana">
-			<li>Price:</li>
-			<li id = "price">$0.00</li>
-			<li>Total in inventory:</li>
-			<li id = "totalInv">0</li>
-			<li>Average price paid:</li>
-			<li id="avPrice">$0.00</li>
-		</ul>
-	</div>	
-	<div class = "fruit" id = "pearDiv"><img src = "images/pear.png">
-		<ul id = "pear">
-			<li>Price:</li>
-			<li id = "price">$0.00</li>
-			<li>Total in inventory:</li>
-			<li id = "totalInv">0</li>
-			<li>Average price paid:</li>
-			<li id="avPrice">$0.00</li>
-		</ul>
-	</div>
-	<div class = "fruit" id = "orangeDiv"><img src = "images/orange.png">
-		<ul id = "orange">
-			<li>Price:</li>
-			<li id = "price">$0.00</li>
-			<li>Total in inventory:</li>
-			<li id = "totalInv">0</li>
-			<li>Average price paid:</li>
-			<li id="avPrice">$0.00</li>
-		</ul>
-	</div>
-<br/>
-	<h2 id = "cash">Your available cash: $50.00</h2>
-
+	<div class="row citation"> With thanks to <a href="http://www.pusheen.com/post/14343627022">Pusheen the Cat</a>.</div>
 	</body>
 </html>
